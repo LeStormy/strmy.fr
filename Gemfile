@@ -78,3 +78,5 @@ gem 'pagy'
 
 # ActiveAdmin
 gem 'activeadmin'
+
+gem 'counter_culture'
