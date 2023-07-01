@@ -1,8 +1,14 @@
 class UrlsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:api_create]
   def create
     target = params.require(:url).permit(:target)[:target].downcase
     url = Url.new(target: target)
-    url.code = generate_short_string(4)
+    code = generate_short_string(4)
+    while Url.find_by(code: code).present?
+      code = generate_short_string(4)
+    end
+
+    url.code = code
     url.save!
 
     redirect_to url_path(url.code)
@@ -19,15 +25,27 @@ class UrlsController < ApplicationController
   end
 
   def api_create
-    target = params.require(:url).permit(:target)[:target].downcase
+    return unless bearer_token == Rails.application.credentials.dig(:api_token)
+    target = params.permit(:target)[:target].downcase
     url = Url.new(target: target)
-    url.code = generate_short_string(4)
-    url.save!
+    code = generate_short_string(4)
+    while Url.find_by(code: code).present?
+      code = generate_short_string(4)
+    end
 
-    render json: url
+    url.code = code
+    url.save!
+    
+    render json: url.as_json
   end
 
   private
+
+  def bearer_token
+    pattern = /^Bearer /
+    header  = request.headers["Authorization"] # <= env
+    header.gsub(pattern, '') if header && header.match(pattern)
+  end
 
   def url_params
     params.require(:url).permit(:target)
