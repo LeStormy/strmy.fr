@@ -3,6 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "STRMY" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="STRMY Short URL service. Shorten URLs. Simple as that."/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -10,12 +11,12 @@
     <meta property="og:site_name" content="strmy"/>
     <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "STRMY" %>">
     <meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : "STRMY Short URL service" %>">
-    <meta property="og:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo256.png') %>">
+    <meta property="og:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo.png') %>">
     <meta name="twitter:site" content="STRMY" />
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : "STRMY" %>">
     <meta name="twitter:description" content="<%= content_for?(:description) ? yield(:description) : "STRMY, Short URL service" %>">
-    <meta name="twitter:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo256.png') %>">
+    <meta name="twitter:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo.png') %>">
 
     <link rel="icon" type="image/png" href=<%= asset_path('favicon-96x96.png') %> sizes="32x32">
     <link rel="apple-touch-icon" sizes="57x57" href=<%= asset_path('apple-icon-57x57.png') %>>

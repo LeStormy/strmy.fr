@@ -18,6 +18,15 @@ class UrlsController < ApplicationController
     redirect_to url&.target, allow_other_host: true
   end
 
+  def api_create
+    target = params.require(:url).permit(:target)[:target].downcase
+    url = Url.new(target: target)
+    url.code = generate_short_string(4)
+    url.save!
+
+    render json: url
+  end
+
   private
 
   def url_params
