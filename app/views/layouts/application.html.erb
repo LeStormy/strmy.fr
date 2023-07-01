@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "STRMY" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <meta property="og:site_name" content="strmy"/>
+    <meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "STRMY" %>">
+    <meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : "STRMY Short URL service" %>">
+    <meta property="og:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo256.png') %>">
+    <meta name="twitter:site" content="STRMY" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : "STRMY" %>">
+    <meta name="twitter:description" content="<%= content_for?(:description) ? yield(:description) : "STRMY, Short URL service" %>">
+    <meta name="twitter:image" content="<%= content_for?(:image_url) ? yield(:image_url) : asset_path('logo256.png') %>">
+
+    <link rel="icon" type="image/png" href=<%= asset_path('favicon-96x96.png') %> sizes="32x32">
+    <link rel="apple-touch-icon" sizes="57x57" href=<%= asset_path('apple-icon-57x57.png') %>>
+    <link rel="apple-touch-icon" sizes="60x60" href=<%= asset_path('apple-icon-60x60.png') %>>
+    <link rel="apple-touch-icon" sizes="72x72" href=<%= asset_path('apple-icon-72x72.png') %>>
+    <link rel="apple-touch-icon" sizes="76x76" href=<%= asset_path('apple-icon-76x76.png') %>>
+    <link rel="apple-touch-icon" sizes="114x114" href=<%= asset_path('apple-icon-114x114.png') %>>
+    <link rel="apple-touch-icon" sizes="120x120" href=<%= asset_path('apple-icon-120x120.png') %>>
+    <link rel="apple-touch-icon" sizes="144x144" href=<%= asset_path('apple-icon-144x144.png') %>>
+    <link rel="apple-touch-icon" sizes="152x152" href=<%= asset_path('apple-icon-152x152.png') %>>
+    <link rel="apple-touch-icon" sizes="180x180" href=<%= asset_path('apple-icon-180x180.png') %>>
+    <link rel="icon" type="image/png" sizes="192x192"  href=<%= asset_path('android-icon-192x192.png') %>>
+    <link rel="icon" type="image/png" sizes="32x32" href=<%= asset_path('favicon-32x32.png') %>>
+    <link rel="icon" type="image/png" sizes="96x96" href=<%= asset_path('favicon-96x96.png') %>>
+    <link rel="icon" type="image/png" sizes="16x16" href=<%= asset_path('favicon-16x16.png') %>>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"  />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <link href="https://jenil.github.io/bulmaswatch/cyborg/bulmaswatch.min.css" rel="stylesheet" />
+
+
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+    <!--
+      If using a TypeScript entrypoint file:
+        vite_typescript_tag 'application'
+
+      If using a .jsx or .tsx entrypoint, add the extension:
+        vite_javascript_tag 'application.jsx'
+
+      Visit the guide for more information: https://vite-ruby.netlify.app/guide/rails
+    -->
+
+  </head>
+
+  <body class="">
+    <%= render 'shared/navbar' %>
+    <main class="container p-4 mx-auto">
+      <%= yield %>
+    </main>
+    <%= render 'shared/footer' %>
+  </body>
+</html>

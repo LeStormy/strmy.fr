@@ -1,0 +1,51 @@
+.columns
+  .column.is-half-desktop.is-offset-one-quarter-desktop.is-two-thirds-tablet.is-offset-2-tablet
+    .py-4
+      h1.is-size-1.is-size-2-mobile.has-text-centered.has-font-belanosima.has-text-weight-bold
+        | Here is your short URL!
+      .box.mt-4
+        h2#short-url.is-size-2.is-size-3-mobile.has-text-centered.has-text-weight-light
+          = "https://strmy.fr/#{@url.code}"
+
+    .flexbox-space-between
+      = button_to root_path, method: :get, class: 'button primary-button' do
+        .flexbox 
+          i.fas.fa-arrow-left
+          p = "Start over"
+
+      button#clipboard-btn.button.primary-button onclick='copyToClipboard()'
+        .flexbox 
+          p#copyText = "Copy URL"
+          i.far.fa-clipboard
+
+.columns
+  .column.is-half-desktop.is-offset-one-quarter-desktop.is-two-thirds-tablet.is-offset-2-tablet
+    .py-4
+      .box.mt-4
+        h3.is-size-3.is-size-4-mobile.has-text-weight-bold
+          | URL details
+        h4.is-size-4.is-size-5-mobile.has-text-weight-light
+          = "Target : #{@url.target}"
+        h4.is-size-4.is-size-5-mobile.has-text-weight-light
+          = "Clicks : #{@url.uses.count}"
+
+javascript: 
+  function copyToClipboard() {
+    const shortUrl = document.getElementById('short-url').textContent
+    navigator.clipboard.writeText(shortUrl).then(() => {
+      const copyText = document.getElementById('copyText')
+      const copyBtn = document.getElementById('clipboard-btn')
+      copyText.textContent = "Copied to clipboard!"
+      copyBtn.classList.add("green-text")
+
+      setTimeout(() => {
+        copyText.textContent = "Copy URL"
+        copyBtn.classList.remove("green-text")
+      }, 2000)
+
+      /* Resolved - text copied to clipboard successfully */
+    },() => {
+      console.error('Failed to copy');
+      /* Rejected - text failed to copy to the clipboard */
+    })
+  }

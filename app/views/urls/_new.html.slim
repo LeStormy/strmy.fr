@@ -1,0 +1,7 @@
+.mt-4.columns
+  .column.has-text-centered.is-one-third-desktop.is-offset-one-third-desktop.is-half-tablet.is-offset-one-quarter-tablet
+    = form_for Url.new, url: urls_path do |form|
+      .
+        = form.text_field :target, class: 'input token-input', type: 'url', required: true, placeholder: 'https://google.com'
+      .
+        = form.submit :Shorten!, class: 'button w-300'

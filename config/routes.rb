@@ -1,0 +1,7 @@
+Rails.application.routes.draw do
+  root to: 'application#index'
+
+  resources :urls
+
+  get ':code', to: "urls#redirect"
+end
